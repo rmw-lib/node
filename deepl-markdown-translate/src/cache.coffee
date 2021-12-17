@@ -41,6 +41,7 @@ export default class Cache
   )->
     @db = open {
       path : db
+      maxDbs: 256
     }
     @lang_db = new Map()
 
