@@ -66,6 +66,8 @@ translate_comment = (markdown, translate)=>
         code_li.push(line)
   return out.join("\n")
 
+TurndownService.prototype.escape = (txt)=>txt
+
 turndownService = new TurndownService {
   headingStyle:"atx"
   hr: '---'

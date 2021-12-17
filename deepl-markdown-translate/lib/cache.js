@@ -67,7 +67,8 @@ export default Cache = class Cache {
     this._db = this._db.bind(this);
     this.translate = translate;
     this.db = open({
-      path: db
+      path: db,
+      maxDbs: 256
     });
     this.lang_db = new Map();
   }

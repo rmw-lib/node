@@ -83,6 +83,10 @@ translate_comment = async(markdown, translate) => {
   return out.join("\n");
 };
 
+TurndownService.prototype.escape = (txt) => {
+  return txt;
+};
+
 turndownService = new TurndownService({
   headingStyle: "atx",
   hr: '---',

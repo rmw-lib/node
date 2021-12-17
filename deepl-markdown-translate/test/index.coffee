@@ -1,5 +1,4 @@
 #!/usr/bin/env coffee
-
 import translate from '@rmw/deepl-markdown-translate'
 
 txt = """
@@ -8,6 +7,8 @@ txt = """
 next: /日志/2020-11-29
 
 ---
+
+[[toc]]
 
 上面的是博客配置，会不翻译
 

@@ -30,7 +30,7 @@
 
 ## 使用
 
-翻译需要 [deepl 的`api key`](https://www.deepl.com/pro-api?cta=header-pro-api)，请先去申请。(开通需要美国信用卡，有需求可以邮件 `i@rmw.link` 可以帮忙待办)。
+翻译需要 [deepl 的`api key`](https://www.deepl.com/pro-api)，请先去申请。( 开通需要美国信用卡，有需求可以邮件 `i@rmw.link` 帮忙代办 )。
 
 `$HOME/.config/deepl.js` 配置如下
 
@@ -45,7 +45,6 @@ module.exports = {
 
 ```
 #!/usr/bin/env coffee
-
 import translate from '@rmw/deepl-markdown-translate'
 
 txt = """
@@ -54,6 +53,8 @@ txt = """
 next: /日志/2020-11-29
 
 ---
+
+[[toc]]
 
 上面的是博客配置，会不翻译
 
