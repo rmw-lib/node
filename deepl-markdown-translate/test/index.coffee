@@ -12,7 +12,7 @@ translate = new Translate(
 xml = "<p><code>财付通</code>的国际<a>支付</a>也用了<pre>好几年</pre>了</p>"
 
 
-console.log await translate.xml(xml)
+console.log (await translate.xml(xml)).data
 
 ###
 # config file like { key: 'xxx', region: 'japaneast' }

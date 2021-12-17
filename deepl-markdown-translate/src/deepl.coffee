@@ -14,8 +14,13 @@ export default class Translate
     }
 
   post:(option)->
-    console.log option
-    axios.post @url, option
+    o = new URLSearchParams()
+    for k,v of option
+      o.append(k,v)
+
+    axios.post @url, o, {
+      'Content-Type': 'application/x-www-form-urlencoded'
+    }
 
   txt:(text, target_lang="EN-US", option={})->
     option = {

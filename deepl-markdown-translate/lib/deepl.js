@@ -14,8 +14,15 @@ export default Translate = class Translate {
   }
 
   post(option) {
-    console.log(option);
-    return axios.post(this.url, option);
+    var k, o, v;
+    o = new URLSearchParams();
+    for (k in option) {
+      v = option[k];
+      o.append(k, v);
+    }
+    return axios.post(this.url, o, {
+      'Content-Type': 'application/x-www-form-urlencoded'
+    });
   }
 
   txt(text, target_lang = "EN-US", option = {}) {
