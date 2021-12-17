@@ -10,7 +10,7 @@ re_c_style_comment = /\/\*[\s\S]*?\*\/|\/\/.*$/gm
 c_style_comment = (txt, translate)=>
   li = []
 
-  txt = txt.replaceAll "://", ":\u202c/"
+  txt = txt.replaceAll "://", ":/\\/"
   txt.replace(
     re_c_style_comment
     (match)=>
@@ -36,7 +36,7 @@ c_style_comment = (txt, translate)=>
       if match.startsWith '/*'
         return "/*"+li.shift()+"*/"
       match
-  ).replaceAll ":\u202c/","://"
+  ).replaceAll ":/\\/","://"
 
 comment = {
   rust:c_style_comment
@@ -109,7 +109,15 @@ export default class Md
     html = await deepl.xml(html, target_lang)
     txt = turndownService.turndown html
 
-    txt = await translate_comment(txt,(t)=>deepl.txt(t,target_lang))
+    txt = await translate_comment(
+      txt
+      (t)=>
+        if deepl.option.source_lang == "ZH"
+          if /^[\x00-\x7F]*$/.test(t)
+            return t
+        deepl.txt(t,target_lang)
+
+    )
     pre+txt
 
 
