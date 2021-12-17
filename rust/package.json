@@ -1,0 +1,24 @@
+{
+  "name": "@rmw/rust",
+  "version": "0.0.4",
+  "repository": "https://github.com/rmw-lib/node/tree/master/rust",
+  "description": "rust bind for rmw",
+  "main": "rust.node",
+  "scripts": {
+    "build": "npx cargo-cp-artifact -nc rust.node -- cargo build --message-format=json-render-diagnostics",
+    "build-debug": "npm run build --",
+    "build-release": "npm run build -- --release",
+    "install": "npm run build-release",
+    "test": "cargo test"
+  },
+  "author": "gcxfd",
+  "files": [
+    "Cargo.toml",
+    "src/*"
+  ],
+  "license": "AGPL-3.0-or-later",
+  "devDependencies": {
+    "cargo-cp-artifact": "^0.1"
+  },
+  "type": "module"
+}

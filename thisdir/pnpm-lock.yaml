@@ -1,0 +1,15 @@
+lockfileVersion: 5.3
+
+specifiers:
+  await-sleep: ^0.0.1
+
+devDependencies:
+  await-sleep: registry.npmmirror.com/await-sleep/0.0.1
+
+packages:
+
+  registry.npmmirror.com/await-sleep/0.0.1:
+    resolution: {integrity: sha1-BEUy5J8fQhnSAw159RfWRWmifVA=, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/await-sleep/download/await-sleep-0.0.1.tgz}
+    name: await-sleep
+    version: 0.0.1
+    dev: true

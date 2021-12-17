@@ -1,0 +1,22 @@
+[package]
+name = "rmw-stun"
+description = "get external ip port via stun server"
+version = "0.0.3"
+license = "AGPL-3.0-or-later"
+repository = "https://github.com/rmw-lib/node/tree/master/stun"
+edition = "2021"
+readme = "README.md"
+
+[lib]
+crate-type = ["lib"]
+
+[dependencies]
+anyhow = "1.0.45"
+async-std = { version = "1.10.0", features = ["tokio1","attributes"] }
+stun = "0.4.1"
+thiserror = "1.0.30"
+
+[[example]]
+name = "main"
+path = "example/main.rs"
+bench = false

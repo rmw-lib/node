@@ -1,0 +1,21 @@
+{
+  "name": "@rmw/worker",
+  "version": "0.0.3",
+  "repository": "https://github.com/rmw-lib/node/tree/master/worker",
+  "author": "i@rmw.link",
+  "license": "AGPL",
+  "exports": {
+    ".": "./lib/index.js",
+    "./*": "./lib/*"
+  },
+  "files": [
+    "lib/*"
+  ],
+  "devDependencies": {
+    "await-sleep": "^0.0.1"
+  },
+  "scripts": {
+    "prepare": "rm -rf lib && rsync -av --include='*/' --include='*.js' --include='*.mjs' --exclude=* src/ lib/ && npx coffee --compile --output lib src/ && npx md-include .markdown.json"
+  },
+  "type": "module"
+}

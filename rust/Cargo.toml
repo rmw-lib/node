@@ -1,0 +1,23 @@
+[package]
+name = "rust"
+version = "0.1.0"
+license = "AGPL-3.0-or-later"
+edition = "2021"
+exclude = ["index.node"]
+
+[lib]
+crate-type = ["cdylib"]
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+blake3 = "1.2.0"
+async-std = { version = "1.10.0", features = ["tokio1", "unstable"] }
+rmw-upnp = {path="../upnp"}
+rmw-stun = {path="../stun"}
+rmw-bytes = "0.1.13"
+
+[dependencies.neon]
+version = "0.10.0-alpha.2"
+default-features = false
+features = ["napi-latest","channel-api","promise-api"]
