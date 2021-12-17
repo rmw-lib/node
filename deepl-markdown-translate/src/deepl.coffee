@@ -14,10 +14,13 @@ export default class Translate
     }
 
   post:(option)->
+    if not option.text
+      return ''
     o = new URLSearchParams()
     for k,v of option
       o.append(k,v)
 
+    console.log ">> translate", option.text
     {data} = await axios.post @url, o, {
       'Content-Type': 'application/x-www-form-urlencoded'
     }

@@ -15,11 +15,15 @@ export default Translate = class Translate {
 
   async post(option) {
     var data, k, o, translations, v;
+    if (!option.text) {
+      return '';
+    }
     o = new URLSearchParams();
     for (k in option) {
       v = option[k];
       o.append(k, v);
     }
+    console.log(">> translate", option.text);
     ({data} = (await axios.post(this.url, o, {
       'Content-Type': 'application/x-www-form-urlencoded'
     })));

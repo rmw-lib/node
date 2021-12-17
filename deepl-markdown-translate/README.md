@@ -49,14 +49,16 @@ translate = new Translate(
   (await import(join(homedir(),".config/deepl.js"))).default
 )
 
-xml = "<p><code>财付通</code>的国际<a>支付</a>也用了<pre>好几年</pre>了</p>"
+xml = "<p><code>财付通</code>的国际支付也用了<pre>好几年</pre>了。</p><p>月底要下线了。</p>"
 
 cache = new Cache(
   translate
 )
 
-console.log await cache.txt "用好几年了"
+console.log await cache.xml xml
 #console.log (await translate.xml(xml))
+
+#console.log await cache.txt "您好"
 
 ###
 # config file like { key: 'xxx', region: 'japaneast' }

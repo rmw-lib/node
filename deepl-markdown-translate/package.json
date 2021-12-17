@@ -14,6 +14,7 @@
   ],
   "dependencies": {
     "@rmw/axios": "^0.0.16",
+    "@rmw/utf8": "^0.0.6",
     "blake3": "^2.1.7",
     "cmark-gfm": "^0.9.0",
     "lmdb": "^2.1.0-beta3",
