@@ -1,4 +1,4 @@
-# @rmw/markdown-translate
+# @rmw/deepl-markdown-translate
 
 ## 说明
 
@@ -16,20 +16,28 @@
 
 而用另外一些，比如[bilingual](https://github.com/zjp-CN/bilingual/issues/22) ，又不能保持链接的样式。
 
-我写的 `@rmw/markdown-translate` 解决了一系列问题，并且支持
+我写的 `@rmw/deepl-markdown-translate` 解决了一系列问题，并且支持
 
 * 翻译 `rust` 代码的注释文本
 * 不翻译 [vuepress](https://v2.vuepress.vuejs.org/zh/reference/default-theme/frontmatter.html#prev) 中的配置字段
+* 逐行缓存，节约翻译成本
 
 ##  安装
 
-`yarn add @rmw/markdown-translate` 或者 `npm install @rmw/markdown-translate`
+`yarn add @rmw/deepl-markdown-translate` 或者 `npm install @rmw/deepl-markdown-translate`
 
 ## 使用
 
-翻译需要 AZURE 的翻译接口，请先去 [AZURE 创建“翻译”资源](https://docs.microsoft.com/zh-cn/azure/cognitive-services/translator/translator-how-to-signup) ，配置中的 `key` 和 `region`都来自这里，如下图。
+翻译需要 [deepl 的`API Key`](https://www.deepl.com/pro-api?cta=header-pro-api)，请先去申请(需要美国信用卡请邮件 `i@rmw.link` 可以帮忙待办)。
 
-![](https://raw.githubusercontent.com/gcxfd/img/gh-pages/oGNsXv.png)
+`$HOME/.config/deepl.js` 配置如下
+
+```js
+module.exports = {
+  auth_key: "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx:xx",
+  source_lang:"ZH"
+};
+```
 
 用法演示如下 :
 
@@ -39,7 +47,7 @@
 
 运行后输出如下
 
-![](https://raw.githubusercontent.com/gcxfd/img/gh-pages/CtyefT.png)
+![](https://raw.githubusercontent.com/gcxfd/img/gh-pages/CytFEw.png)
 
 ## 关于
 

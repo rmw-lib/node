@@ -9,7 +9,6 @@ export default class Translate
   )->
 
     @option = {
-      source_lang:"ZH"
       ...option
     }
 
