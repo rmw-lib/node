@@ -38,33 +38,9 @@
 ```
 #!/usr/bin/env coffee
 
-import Translate from '@rmw/deepl-markdown-translate/deepl'
-import Cache from '@rmw/deepl-markdown-translate/cache'
-import {readFileSync} from 'fs'
-import {homedir} from 'os'
-import cmark from 'cmark-gfm'
-import {join} from 'path'
+import translate from '@rmw/deepl-markdown-translate'
 
-translate = new Translate(
-  (await import(join(homedir(),".config/deepl.js"))).default
-)
-
-xml = "<p><code>财付通</code>的国际支付也用了<pre>好几年</pre>了。</p><p>月底要下线了。</p>"
-
-cache = new Cache(
-  translate
-)
-
-console.log await cache.xml xml
-#console.log (await translate.xml(xml))
-
-#console.log await cache.txt "您好"
-
-###
-# config file like { key: 'xxx', region: 'japaneast' }
-config = JSON.parse readFileSync(join(homedir(), '.config/markdown-translate.json'),"utf8")
-
-md = """
+txt = """
 ---
 
 next: /日志/2020-11-29
@@ -87,23 +63,16 @@ internal/main/run_main_module
 /*
 可以翻译
 多行注释
-* /
+*/
 let s  = "字符串中的文本不会翻译 https://阿里巴巴.com";
 \```
 
 对 [libmdbx](https://github.com/rmw-lib/mdbx) 的封装
 """
 
-#console.log await translate(
-#  md
-#  {
-#    from : 'zh-Hans'
-#    to: "en-us"
-#    ...config
-#  }
-#)
-#
-###
+
+
+console.log await translate txt, "EN-US"
 ```
 
 运行后输出如下

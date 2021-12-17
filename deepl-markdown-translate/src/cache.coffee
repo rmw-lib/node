@@ -20,6 +20,20 @@ split_p = (xml)=>
     p = np
   li
 
+
+class RmwUtf8Db
+  constructor:(@db)->
+
+  get:(key)->
+    r = @db.get(key)
+    if r
+      return decode(r)
+
+  set:(key,val)->
+    e = encode(val)
+    #console.log "compress ratio", (100*e.length/Buffer.from(val,'utf8').length) + "%"
+    @db.put(key,e)
+
 export default class Cache
   constructor:(
     @translate
@@ -27,22 +41,23 @@ export default class Cache
   )->
     @db = open {
       path : db
-      keyEncoding:'binary'
-      encoding:'binary'
     }
+    @lang_db = new Map()
 
-  _put:(key,val)->
-    e = encode(val)
-    # console.log "compress ratio", (100*e.length/Buffer.from(val,'utf8').length) + "%"
-    @db.put(key,e)
+  _db : (lang)=>
+    db = @lang_db.get(lang)
+    if not db
+      db = new RmwUtf8Db @db.openDB(
+        lang
+        keyEncoding:'binary'
+        encoding:'binary'
+      )
+      @lang_db.set(lang,db)
+    db
 
-  _get:(key)->
-    r = @db.get(key)
-    if r
-      return decode(r)
 
   xml:(text, target_lang="EN-US")->
-    {db} = @
+    db = @_db target_lang
 
     cache = new Map()
     not_exist = []
@@ -50,7 +65,7 @@ export default class Cache
     li = split_p(text)
     for i from li
       hash = blake3.hash i
-      r = @_get(hash)
+      r = db.get(hash)
       if r
         cache.set(i,r)
       else
@@ -61,7 +76,7 @@ export default class Cache
         t = not_exist[pos]
         cache.set(t, i)
         hash = blake3.hash t
-        @_put hash, i
+        await db.set hash, i
 
     xml = []
     for i from li
@@ -72,10 +87,10 @@ export default class Cache
 
 
   txt:(text, target_lang="EN-US")->
-    {db} = @
+    db = @_db target_lang
     hash = blake3.hash text
-    r = @_get(hash)
+    r = db.get(hash)
     if not r
       r = await @translate.txt(text,target_lang)
-      await @_put hash, r
+      await db.set hash, r
     r

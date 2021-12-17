@@ -20,7 +20,7 @@ export default class Translate
     for k,v of option
       o.append(k,v)
 
-    console.log ">> translate", option.text
+    #console.log ">> translate", option.text
     {data} = await axios.post @url, o, {
       'Content-Type': 'application/x-www-form-urlencoded'
     }

@@ -23,7 +23,7 @@ export default Translate = class Translate {
       v = option[k];
       o.append(k, v);
     }
-    console.log(">> translate", option.text);
+    //console.log ">> translate", option.text
     ({data} = (await axios.post(this.url, o, {
       'Content-Type': 'application/x-www-form-urlencoded'
     })));
