@@ -7,10 +7,7 @@ import axios from '@rmw/axios';
 export default Translate = class Translate {
   constructor(option = {}, url = "https://api-free.deepl.com/v2/translate") {
     this.url = url;
-    this.option = {
-      source_lang: "ZH",
-      ...option
-    };
+    this.option = {...option};
   }
 
   async post(option) {
