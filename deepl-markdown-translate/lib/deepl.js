@@ -31,7 +31,7 @@ export default Translate = class Translate {
   }
 
   txt(text, target_lang = "EN-US", option = {}) {
-    return option = {text, target_lang, ...this.option, ...option};
+    return this.post({text, target_lang, ...this.option, ...option});
   }
 
   xml(text, target_lang = "EN-US", option = {}) {

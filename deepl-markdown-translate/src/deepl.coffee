@@ -27,7 +27,7 @@ export default class Translate
     throw Error(JSON.stringify r)
 
   txt:(text, target_lang="EN-US", option={})->
-    option = {
+    @post {
       text
       target_lang
       ...@option

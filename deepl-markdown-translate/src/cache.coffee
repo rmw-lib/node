@@ -20,6 +20,6 @@ export default class Cache
     hash = blake3.hash text
     r = await db.get(hash)
     if not r
-      r = @translate.txt(text,target_lang)
-      await db.set hash, r
+      r = await @translate.txt(text,target_lang)
+      await db.put hash, r
     r
