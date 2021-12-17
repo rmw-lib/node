@@ -10,7 +10,7 @@ re_c_style_comment = /\/\*[\s\S]*?\*\/|\/\/.*$/gm
 c_style_comment = (txt, translate)=>
   li = []
 
-  txt = txt.replaceAll "://", ":/\\/"
+  txt = txt.replaceAll "://", ":-/"
   txt.replace(
     re_c_style_comment
     (match)=>
@@ -36,7 +36,7 @@ c_style_comment = (txt, translate)=>
       if match.startsWith '/*'
         return "/*"+li.shift()+"*/"
       match
-  ).replaceAll ":/\\/","://"
+  ).replaceAll ":-/","://"
 
 comment = {
   rust:c_style_comment
