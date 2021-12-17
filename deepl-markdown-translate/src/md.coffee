@@ -112,7 +112,7 @@ export default class Md
     txt = await translate_comment(
       txt
       (t)=>
-        if deepl.option.source_lang == "ZH"
+        if deepl.source_lang == "ZH"
           if /^[\x00-\x7F]*$/.test(t)
             return t
         deepl.txt(t,target_lang)

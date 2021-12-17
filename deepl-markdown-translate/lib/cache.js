@@ -70,6 +70,7 @@ export default Cache = class Cache {
       path: db,
       maxDbs: 256
     });
+    this.source_lang = this.translate.option.source_lang;
     this.lang_db = new Map();
   }
 

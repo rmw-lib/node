@@ -7,7 +7,6 @@ export default class Translate
     option={}
     @url="https://api-free.deepl.com/v2/translate"
   )->
-
     @option = {
       ...option
     }

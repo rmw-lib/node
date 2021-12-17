@@ -43,6 +43,7 @@ export default class Cache
       path : db
       maxDbs: 256
     }
+    @source_lang = @translate.option.source_lang
     @lang_db = new Map()
 
   _db : (lang)=>

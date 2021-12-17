@@ -18,7 +18,7 @@ re_c_style_comment = /\/\*[\s\S]*?\*\/|\/\/.*$/gm;
 c_style_comment = async(txt, translate) => {
   var i, li;
   li = [];
-  txt = txt.replaceAll("://", ":/\\/");
+  txt = txt.replaceAll("://", ":-/");
   txt.replace(re_c_style_comment, (match) => {
     if (match.startsWith('//')) {
       li.push(match.slice(2));
@@ -47,7 +47,7 @@ c_style_comment = async(txt, translate) => {
       return "/*" + li.shift() + "*/";
     }
     return match;
-  }).replaceAll(":/\\/", "://");
+  }).replaceAll(":-/", "://");
 };
 
 comment = {
@@ -137,7 +137,7 @@ export default Md = class Md {
     html = (await deepl.xml(html, target_lang));
     txt = turndownService.turndown(html);
     txt = (await translate_comment(txt, (t) => {
-      if (deepl.option.source_lang === "ZH") {
+      if (deepl.source_lang === "ZH") {
         if (/^[\x00-\x7F]*$/.test(t)) {
           return t;
         }
