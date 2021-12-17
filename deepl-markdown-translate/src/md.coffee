@@ -14,7 +14,6 @@ c_style_comment = (txt, translate)=>
   txt.replace(
     re_c_style_comment
     (match)=>
-      console.log [match]
       if match.startsWith '//'
         li.push match[2..]
       if match.startsWith '/*'
