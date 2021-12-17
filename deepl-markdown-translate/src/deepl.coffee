@@ -23,7 +23,7 @@ export default class Translate
     }
     {translations} = data
     if translations
-      return translations
+      return translations[0].text
     throw Error(JSON.stringify r)
 
   txt:(text, target_lang="EN-US", option={})->

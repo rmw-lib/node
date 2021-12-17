@@ -120,6 +120,11 @@ export default async(md, option) => {
       strikethrough: true
     }
   }));
+  html = ((await translate([
+    {
+      'Text': html
+    }
+  ], option))).join('');
   turndownService = new TurndownService({
     headingStyle: "atx",
     hr: '---',
@@ -141,11 +146,6 @@ export default async(md, option) => {
       return prefix + content + (node.nextSibling && !/\n$/.test(content) ? '\n' : '');
     }
   });
-  html = ((await translate([
-    {
-      'Text': html
-    }
-  ], option))).join('');
   txt = turndownService.turndown(html);
   txt = (await translate_comment(txt, option));
   return pre + txt;

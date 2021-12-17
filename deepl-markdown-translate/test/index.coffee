@@ -1,8 +1,10 @@
 #!/usr/bin/env coffee
 
 import Translate from '@rmw/deepl-markdown-translate/deepl'
+import Cache from '@rmw/deepl-markdown-translate/cache'
 import {readFileSync} from 'fs'
 import {homedir} from 'os'
+import cmark from 'cmark-gfm'
 import {join} from 'path'
 
 translate = new Translate(
@@ -11,8 +13,12 @@ translate = new Translate(
 
 xml = "<p><code>财付通</code>的国际<a>支付</a>也用了<pre>好几年</pre>了</p>"
 
+cache = new Cache(
+  translate
+)
 
-console.log (await translate.xml(xml))
+console.log await cache.txt "用好几年了"
+#console.log (await translate.xml(xml))
 
 ###
 # config file like { key: 'xxx', region: 'japaneast' }

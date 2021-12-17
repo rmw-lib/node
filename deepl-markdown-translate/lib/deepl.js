@@ -25,7 +25,7 @@ export default Translate = class Translate {
     })));
     ({translations} = data);
     if (translations) {
-      return translations;
+      return translations[0].text;
     }
     throw Error(JSON.stringify(r));
   }

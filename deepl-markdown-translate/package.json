@@ -14,7 +14,9 @@
   ],
   "dependencies": {
     "@rmw/axios": "^0.0.16",
+    "blake3": "^2.1.7",
     "cmark-gfm": "^0.9.0",
+    "lmdb": "^2.1.0-beta3",
     "turndown": "^7.1.1"
   },
   "scripts": {

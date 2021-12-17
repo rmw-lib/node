@@ -105,6 +105,17 @@ export default (md, option)=>
       strikethrough: true
   }
 
+
+  html = (await translate(
+    [
+      {
+        'Text':html
+      }
+    ]
+    option
+  )).join ''
+
+
   turndownService = new TurndownService {
     headingStyle:"atx"
     hr: '---'
@@ -122,16 +133,6 @@ export default (md, option)=>
         index = Array::indexOf.call(parent.children, node)
         prefix = (if start then Number(start) + index else index + 1) + '. '
       prefix + content + (if node.nextSibling and !/\n$/.test(content) then '\n' else '')
-
-
-  html = (await translate(
-    [
-      {
-        'Text':html
-      }
-    ]
-    option
-  )).join ''
 
   txt = turndownService.turndown html
 
