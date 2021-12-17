@@ -43,10 +43,14 @@ import {readFileSync} from 'fs'
 import {homedir} from 'os'
 import {join} from 'path'
 
+translate = new Translate(
+  (await import(join(homedir(),".config/deepl.js"))).default
+)
 
 xml = "<p><code>财付通</code>的国际<a>支付</a>也用了<pre>好几年</pre>了</p>"
 
-console.log Translate
+
+console.log await translate.xml(xml)
 
 ###
 # config file like { key: 'xxx', region: 'japaneast' }

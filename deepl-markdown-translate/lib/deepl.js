@@ -5,16 +5,16 @@ var Translate;
 import axios from '@rmw/axios';
 
 export default Translate = class Translate {
-  constructor(auth_key, option = {}, url = "https://api-free.deepl.com/v2/translate") {
+  constructor(option = {}, url = "https://api-free.deepl.com/v2/translate") {
     this.url = url;
     this.option = {
       source_lang: "ZH",
-      auth_key,
       ...option
     };
   }
 
   post(option) {
+    console.log(option);
     return axios.post(this.url, option);
   }
 

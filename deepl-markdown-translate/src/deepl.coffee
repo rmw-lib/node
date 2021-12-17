@@ -4,18 +4,17 @@ import axios from '@rmw/axios'
 
 export default class Translate
   constructor:(
-    auth_key
     option={}
     @url="https://api-free.deepl.com/v2/translate"
   )->
 
     @option = {
       source_lang:"ZH"
-      auth_key
       ...option
     }
 
   post:(option)->
+    console.log option
     axios.post @url, option
 
   txt:(text, target_lang="EN-US", option={})->
