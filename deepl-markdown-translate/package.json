@@ -1,6 +1,6 @@
 {
   "name": "@rmw/deepl-markdown-translate",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "repository": "https://github.com/rmw-lib/node/tree/master/deepl-markdown-translate",
   "homepage": "https://github.com/rmw-lib/node/tree/master/deepl-markdown-translate",
   "author": "i@rmw.link",
