@@ -18,9 +18,13 @@ export default class Translate
     for k,v of option
       o.append(k,v)
 
-    axios.post @url, o, {
+    {data} = await axios.post @url, o, {
       'Content-Type': 'application/x-www-form-urlencoded'
     }
+    {translations} = data
+    if translations
+      return translations
+    throw Error(JSON.stringify r)
 
   txt:(text, target_lang="EN-US", option={})->
     option = {

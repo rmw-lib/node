@@ -13,16 +13,21 @@ export default Translate = class Translate {
     };
   }
 
-  post(option) {
-    var k, o, v;
+  async post(option) {
+    var data, k, o, translations, v;
     o = new URLSearchParams();
     for (k in option) {
       v = option[k];
       o.append(k, v);
     }
-    return axios.post(this.url, o, {
+    ({data} = (await axios.post(this.url, o, {
       'Content-Type': 'application/x-www-form-urlencoded'
-    });
+    })));
+    ({translations} = data);
+    if (translations) {
+      return translations;
+    }
+    throw Error(JSON.stringify(r));
   }
 
   txt(text, target_lang = "EN-US", option = {}) {
