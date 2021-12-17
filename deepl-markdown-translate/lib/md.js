@@ -13,18 +13,18 @@ import cmark from 'cmark-gfm';
 
 import TurndownService from 'turndown';
 
-re_c_style_comment = /\/\*[\s\S]*?\*\/|\/\/.*$/gm;
+re_c_style_comment = /\/\*[\s\S]*?\*\/|([^:\/\/])\/\/.*$/gm;
 
 c_style_comment = async(txt, translate) => {
   var i, li;
   li = [];
-  txt = txt.replaceAll("://", ":-/");
   txt.replace(re_c_style_comment, (match) => {
-    if (match.startsWith('//')) {
-      li.push(match.slice(2));
-    }
+    var pos;
     if (match.startsWith('/*')) {
       li.push(match.slice(2, -2));
+    } else {
+      pos = match.indexOf("//");
+      li.push(match.slice(pos + 2));
     }
     return '';
   });
@@ -40,11 +40,12 @@ c_style_comment = async(txt, translate) => {
     return results;
   })());
   return txt.replace(re_c_style_comment, (match, mlc, slc) => {
-    if (match.startsWith('//')) {
-      return "//" + li.shift();
-    }
+    var pos;
     if (match.startsWith('/*')) {
       return "/*" + li.shift() + "*/";
+    } else {
+      pos = match.indexOf("//");
+      return match.slice(0, pos + 2) + li.shift();
     }
     return match;
   }).replaceAll(":-/", "://");
