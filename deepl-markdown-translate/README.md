@@ -68,7 +68,7 @@ next: /日志/2020-11-29
 internal/main/run_main_module
 
 \```rust
-// 可以翻译rust的代码注释
+let x = 1; // 可以翻译rust的代码注释
 /*
 可以翻译
 多行注释

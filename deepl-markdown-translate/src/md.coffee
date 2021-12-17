@@ -5,14 +5,16 @@ import axios from '@rmw/axios'
 import cmark from 'cmark-gfm'
 import TurndownService from 'turndown'
 
-re_c_style_comment = /\/\*[\s\S]*?\*\/|([^\\:]|^)\/\/.*$/gm
+re_c_style_comment = /\/\*[\s\S]*?\*\/|\/\/.*$/gm
 
 c_style_comment = (txt, translate)=>
   li = []
 
+  txt = txt.replaceAll "://", ":\u202c/"
   txt.replace(
     re_c_style_comment
     (match)=>
+      console.log [match]
       if match.startsWith '//'
         li.push match[2..]
       if match.startsWith '/*'
@@ -35,7 +37,7 @@ c_style_comment = (txt, translate)=>
       if match.startsWith '/*'
         return "/*"+li.shift()+"*/"
       match
-  )
+  ).replaceAll ":\u202c/","://"
 
 comment = {
   rust:c_style_comment
