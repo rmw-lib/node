@@ -1,6 +1,6 @@
 #!/usr/bin/env coffee
 
-import CsvIter from '@rmw/csv_iter'
+import CsvIter from '@rmw/csv'
 import {join,dirname} from 'path'
 
 {pathname} = new URL(import.meta.url)

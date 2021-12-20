@@ -1,7 +1,7 @@
 {
-  "name": "@rmw/csv_iter",
+  "name": "@rmw/csv",
   "version": "0.0.0",
-  "repository": "https://github.com/rmw-lib/node/tree/master/csv_iter",
+  "repository": "https://github.com/rmw-lib/node/tree/master/csv",
   "author": "i@rmw.link",
   "license": "AGPL",
   "exports": {

@@ -1,19 +1,19 @@
 <!-- 本文件由 ./readme.make.md 自动生成，请不要直接修改此文件 -->
 
-# @rmw/csv_iter
+# @rmw/csv
 
 async read csv line by line
 
 ##  安装
 
 ```
-yarn add @rmw/csv_iter
+yarn add @rmw/csv
 ```
 
 或者
 
 ```
-npm install @rmw/csv_iter
+npm install @rmw/csv
 ```
 
 ## 使用
@@ -21,7 +21,7 @@ npm install @rmw/csv_iter
 ```
 #!/usr/bin/env coffee
 
-import CsvIter from '@rmw/csv_iter'
+import CsvIter from '@rmw/csv'
 import {join,dirname} from 'path'
 
 {pathname} = new URL(import.meta.url)

@@ -1,17 +1,17 @@
-# @rmw/csv_iter
+# @rmw/csv
 
 async read csv line by line
 
 ##  安装
 
 ```
-yarn add @rmw/csv_iter
+yarn add @rmw/csv
 ```
 
 或者
 
 ```
-npm install @rmw/csv_iter
+npm install @rmw/csv
 ```
 
 ## 使用
