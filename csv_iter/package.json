@@ -1,0 +1,22 @@
+{
+  "name": "@rmw/csv_iter",
+  "version": "0.0.0",
+  "repository": "https://github.com/rmw-lib/node/tree/master/csv_iter",
+  "author": "i@rmw.link",
+  "license": "AGPL",
+  "exports": {
+    ".": "./lib/index.js",
+    "./*": "./lib/*"
+  },
+  "files": [
+    "lib/*"
+  ],
+  "devDependencies": {},
+  "scripts": {
+    "prepare": "rm -rf lib && rsync -av --include='*/' --include='*.js' --include='*.mjs' --exclude=* src/ lib/ && npx coffee --compile --output lib src/ && npx md-include .markdown.json"
+  },
+  "type": "module",
+  "dependencies": {
+    "@fast-csv/parse": "^4.3.6"
+  }
+}
