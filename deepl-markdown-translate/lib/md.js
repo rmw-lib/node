@@ -48,7 +48,7 @@ c_style_comment = async(txt, translate) => {
       return match.slice(0, pos + 2) + li.shift();
     }
     return match;
-  }).replaceAll(":-/", "://");
+  });
 };
 
 comment = {
