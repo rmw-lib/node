@@ -1,6 +1,6 @@
 {
   "name": "@rmw/csv",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "repository": "https://github.com/rmw-lib/node/tree/master/csv",
   "author": "i@rmw.link",
   "license": "AGPL",
