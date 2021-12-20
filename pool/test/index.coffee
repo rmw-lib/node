@@ -7,12 +7,12 @@ pool = Pool 5
 
 job = (n)=>
   console.log n
-  await sleep 500*n
+  await sleep 100*n
   console.log 'done\t',n
 
 n = 0
 while ++n<10
- pool job,n
+ await pool job,n
 
 await pool.done
 
