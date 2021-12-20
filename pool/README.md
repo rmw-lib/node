@@ -24,20 +24,18 @@ npm install @rmw/pool
 import Pool from '@rmw/pool'
 import sleep from 'await-sleep'
 
-job = (n)=>
-  =>
-    console.log n
-    await sleep 500*n
-    console.log '\t',n
-
 pool = Pool 5
 
-await pool.done
+job = (n)=>
+  console.log n
+  await sleep 500*n
+  console.log 'done\t',n
+
 n = 0
 while ++n<10
-  pool job(n)
+ pool job,n
 
-
+await pool.done
 ```
 
 ## 关于

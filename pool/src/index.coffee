@@ -3,24 +3,32 @@ import {cpus} from 'os'
 export default (max=cpus().length*2)=>
   n = 0
   todo = []
-  (func)=>
+  f = ->
+    args = [...arguments]
+    func = args[0]
     if n < max
       ++n
-      return func().finally(
+      return func(...args[1..]).finally(
         =>
           if todo.length
             setImmediate =>
               while todo.length
-                [func,resolve,reject] = todo.shift()
+                args = todo.shift()
                 try
-                  resolve await func()
+                  await args[0](...args[1..])
                 catch err
-                  reject(err)
+                  console.error(err)
               --n
       )
-
-    new Promise (resolve, reject)=>
-      todo.push [func, resolve, reject]
-      return
-
-
+    todo.push args
+  Object.defineProperty(
+    f
+    'pool'
+    writeable:false
+    get:=>
+      loop
+        await Promise.all todo
+        if not todo.length
+          return
+  )
+  f

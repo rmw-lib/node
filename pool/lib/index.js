@@ -4,23 +4,26 @@ import {
 } from 'os';
 
 export default (max = cpus().length * 2) => {
-  var n, todo;
+  var f, n, todo;
   n = 0;
   todo = [];
-  return (func) => {
+  f = function() {
+    var args, func;
+    args = [...arguments];
+    func = args[0];
     if (n < max) {
       ++n;
-      return func().finally(() => {
+      return func(...args.slice(1)).finally(() => {
         if (todo.length) {
           return setImmediate(async() => {
-            var err, reject, resolve;
+            var err;
             while (todo.length) {
-              [func, resolve, reject] = todo.shift();
+              args = todo.shift();
               try {
-                resolve((await func()));
+                await args[0](...args.slice(1));
               } catch (error) {
                 err = error;
-                reject(err);
+                console.error(err);
               }
             }
             return --n;
@@ -28,8 +31,18 @@ export default (max = cpus().length * 2) => {
         }
       });
     }
-    return new Promise((resolve, reject) => {
-      todo.push([func, resolve, reject]);
-    });
+    return todo.push(args);
   };
+  Object.defineProperty(f, 'pool', {
+    writeable: false,
+    get: async() => {
+      while (true) {
+        await Promise.all(todo);
+        if (!todo.length) {
+          return;
+        }
+      }
+    }
+  });
+  return f;
 };
