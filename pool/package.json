@@ -1,6 +1,6 @@
 {
   "name": "@rmw/pool",
-  "version": "0.0.15",
+  "version": "0.0.16",
   "repository": "https://github.com/rmw-lib/node/tree/master/pool",
   "author": "i@rmw.link",
   "license": "AGPL",
