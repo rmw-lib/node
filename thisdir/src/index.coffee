@@ -10,9 +10,9 @@ else
 # windows is "file:///c:/dev/node/walk/lib/test.js"
 
 export thisfile = ({url})=>
-  url.slice(PREFIX_LEN)
+  decodeURI url.slice(PREFIX_LEN)
 
-export thisdir = ({url})=>
-  dirname url.slice(PREFIX_LEN)
+export thisdir = (meta)=>
+  dirname thisfile meta
 
 export default thisdir
