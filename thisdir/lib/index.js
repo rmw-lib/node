@@ -15,11 +15,11 @@ if (sep === '\\') {
 
 // windows is "file:///c:/dev/node/walk/lib/test.js"
 export var thisfile = ({url}) => {
-  return url.slice(PREFIX_LEN);
+  return decodeURI(url.slice(PREFIX_LEN));
 };
 
-export var thisdir = ({url}) => {
-  return dirname(url.slice(PREFIX_LEN));
+export var thisdir = (meta) => {
+  return dirname(thisfile(meta));
 };
 
 export default thisdir;

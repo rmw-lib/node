@@ -32,6 +32,9 @@ export default (max=cpus().length*2)=>
     f
     'done'
     writeable:false
-    get:=>all
+    get:=>
+      if n == 0
+        return
+      all
   )
   f
