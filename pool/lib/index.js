@@ -43,6 +43,9 @@ export default (max = cpus().length * 2) => {
   Object.defineProperty(f, 'done', {
     writeable: false,
     get: () => {
+      if (n === 0) {
+        return;
+      }
       return all;
     }
   });
