@@ -52,3 +52,4 @@ ImplStr!(usize);
 ImplStr!(SocketAddrV4);
 ImplStr!(SocketAddrV6);
 ImplStr!(SocketAddr);
+ImplStr!(String);
