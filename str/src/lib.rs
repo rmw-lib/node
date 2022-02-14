@@ -42,7 +42,14 @@ macro_rules! ImplStr {
       }
 
       fn decode(val: &[u8]) -> Result<Self> {
-        Ok(String::from_utf8_lossy(val).parse()?)
+        Ok(
+          String::from_utf8_lossy(val)
+            .lines()
+            .next()
+            .unwrap_or("")
+            .trim()
+            .parse()?,
+        )
       }
     }
   };
