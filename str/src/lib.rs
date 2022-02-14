@@ -23,8 +23,8 @@ impl Str for bool {
   }
 
   fn decode(val: &[u8]) -> Result<Self> {
-    if val.len() > 0 {
-      if val[0] == '0' as u8 {
+    if !val.is_empty() {
+      if val[0] == b'0' {
         return Ok(false);
       }
       return Ok(true);
