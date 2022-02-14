@@ -2,20 +2,20 @@ use anyhow::Result;
 use std::net::{SocketAddr, SocketAddrV4, SocketAddrV6};
 
 pub trait Str {
-  fn encode(&self) -> String;
-  fn decode(val: &str) -> Result<Self>
+  fn encode(&self) -> Box<[u8]>;
+  fn decode(val: &[u8]) -> Result<Self>
   where
     Self: Sized;
 }
 
 impl Str for bool {
-  fn encode(&self) -> String {
-    if *self { "1" } else { "0" }.into()
+  fn encode(&self) -> Box<[u8]> {
+    if *self { "1" } else { "0" }.as_bytes().into()
   }
 
-  fn decode(val: &str) -> Result<Self> {
-    if let Some(i) = val.chars().next() {
-      if i == '0' {
+  fn decode(val: &[u8]) -> Result<Self> {
+    if val.len() > 0 {
+      if val[0] == '0' as u8 {
         return Ok(false);
       }
       return Ok(true);
@@ -28,12 +28,12 @@ impl Str for bool {
 macro_rules! ImplStr {
   ($cls:ident) => {
     impl Str for $cls {
-      fn encode(&self) -> String {
-        self.to_string()
+      fn encode(&self) -> Box<[u8]> {
+        self.to_string().as_bytes().into()
       }
 
-      fn decode(val: &str) -> Result<Self> {
-        Ok(val.parse()?)
+      fn decode(val: &[u8]) -> Result<Self> {
+        Ok(String::from_utf8_lossy(val).parse()?)
       }
     }
   };
