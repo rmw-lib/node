@@ -8,6 +8,15 @@ pub trait Str {
     Self: Sized;
 }
 
+impl Str for Box<[u8]> {
+  fn encode(&self) -> Box<[u8]> {
+    self.clone()
+  }
+  fn decode(val: &[u8]) -> Result<Self> {
+    Ok(val.into())
+  }
+}
+
 impl Str for bool {
   fn encode(&self) -> Box<[u8]> {
     if *self { "1" } else { "0" }.as_bytes().into()
