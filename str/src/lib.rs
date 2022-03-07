@@ -52,6 +52,28 @@ macro_rules! ImplStr {
         )
       }
     }
+    impl Str for Vec<$cls> {
+      fn encode(&self) -> Box<[u8]> {
+        let mut li = vec![];
+        for i in self {
+          li.push(i.to_string());
+        }
+        li.join("\n").as_bytes().into()
+      }
+
+      fn decode(val: &[u8]) -> Result<Self> {
+        let mut li = vec![];
+        for i in String::from_utf8_lossy(val).lines() {
+          let i = i.trim();
+          if !i.is_empty() {
+            if let Ok(i) = i.parse() {
+              li.push(i);
+            }
+          }
+        }
+        Ok(li)
+      }
+    }
   };
 }
 
