@@ -11,12 +11,11 @@ export default (max = cpus().length * 2) => {
   _init_all = () => {
     return all = new Promise((resolve) => {
       return _done = () => {
-        _init_all();
+        all = void 0;
         resolve();
       };
     });
   };
-  _init_all();
   f = function() {
     var args, func, p;
     args = [...arguments];
@@ -25,6 +24,9 @@ export default (max = cpus().length * 2) => {
       return todo.push([resolve, args]);
     });
     if (n < max) {
+      if (n === 0) {
+        _init_all();
+      }
       ++n;
       setImmediate(async() => {
         var err, resolve;
@@ -50,6 +52,9 @@ export default (max = cpus().length * 2) => {
     writeable: false,
     get: () => {
       if (n === 0) {
+        return;
+      }
+      if (!all) {
         return;
       }
       return all;
