@@ -4,13 +4,19 @@ import {
 } from 'os';
 
 export default (max = cpus().length * 2) => {
-  var _done, all, f, n, todo;
+  var _done, _init_all, all, f, n, todo;
   n = 0;
   todo = [];
-  _done = void 0;
-  all = new Promise((resolve) => {
-    return _done = resolve;
-  });
+  all = _done = void 0;
+  _init_all = () => {
+    return all = new Promise((resolve) => {
+      return _done = () => {
+        _init_all();
+        resolve();
+      };
+    });
+  };
+  _init_all();
   f = function() {
     var args, func, p;
     args = [...arguments];

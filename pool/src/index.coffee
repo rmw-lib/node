@@ -8,18 +8,20 @@ export default (max=cpus().length*2)=>
   _init_all = =>
     all = new Promise (resolve)=>
       _done = =>
-        _init_all()
+        all = undefined
         resolve()
         return
 
-  _init_all()
 
   f = ->
     args = [...arguments]
     func = args[0]
     p = new Promise (resolve)=>
       todo.push [resolve,args]
+
     if n < max
+      if n == 0
+        _init_all()
       ++n
       setImmediate =>
         while todo.length
@@ -40,6 +42,8 @@ export default (max=cpus().length*2)=>
     writeable:false
     get:=>
       if n == 0
+        return
+      if not all
         return
       all
   )
