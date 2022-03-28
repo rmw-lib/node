@@ -4,9 +4,15 @@ export default (max=cpus().length*2)=>
   n = 0
   todo = []
 
-  _done = undefined
-  all = new Promise (resolve)=>
-    _done = resolve
+  all = _done = undefined
+  _init_all = =>
+    all = new Promise (resolve)=>
+      _done = =>
+        _init_all()
+        resolve()
+        return
+
+  _init_all()
 
   f = ->
     args = [...arguments]
