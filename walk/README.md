@@ -37,7 +37,6 @@ for await i from walk(dir)
 console.log '\n> relative path'
 for await i from walkRel(dir)
   console.log i
-
 ```
 
 ## 关于
