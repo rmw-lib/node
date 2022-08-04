@@ -1,8 +1,11 @@
 import {opendir, readlink, stat} from 'fs/promises'
 import {dirname, join, normalize} from "path"
 
-walk = (dir) ->
+walk = (dir, ignore) ->
   for await d from await opendir(dir)
+    if ignore?(d)
+      continue
+
     entry = join(dir, d.name)
     if d.isDirectory()
       yield from walk(entry)
@@ -30,10 +33,9 @@ if process.platform == 'win32'
       yield i.replaceAll '\\','/'
     return
 
-
 export default walk
 
-export walkRel = (dir) ->
+export walkRel = (dir, ignore) ->
   len = dir.length + 1
-  for await d from walk(dir, follow_symbol=true)
+  for await d from walk(dir, ignore)
     yield d[len..]
